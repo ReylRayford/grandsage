@@ -1,8 +1,11 @@
 import discord
 from discord import app_commands
 from dictionnary import quotes
+from discord import FFmpegPCMAudio
 from random import randint
 from info import token
+import youtube_dl
+import os
 
 
 class GrandSage(discord.Client):
@@ -21,6 +24,11 @@ class GrandSage(discord.Client):
 
 client = GrandSage()
 tree = app_commands.CommandTree(client)
+
+
+# =====================================================================
+#                           Partie citation
+# =====================================================================
 
 
 # Envoie une citation du dictionnaire aléatoire dans le channel
@@ -56,6 +64,15 @@ async def del_quote(interaction: discord.Interaction, index: int):
     file.write(f"quotes = {quotes}")
     await interaction.response.send_message("Votre citation a bien été enlevé")
     print("Citation supprimé !")
+
+
+# =====================================================================
+#                           Partie citation
+# =====================================================================
+
+
+@tree.command(name="play", description="Permet de jouer la musique inscrite")
+
 
 
 client.run(token)
